@@ -2,7 +2,7 @@
 using OrdersListAPI.DTOs;
 using OrdersListAPI.Entities;
 
-namespace OrdersListAPI.Infrastructure.MapperProfiles
+namespace OrdersListAPI.Infrastructure.AutoMapperProfiles
 {
     public class StatusMapProfile : Profile
     {

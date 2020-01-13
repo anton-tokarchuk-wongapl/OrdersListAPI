@@ -16,11 +16,18 @@
     <Folder Include="Repositories\OrdersRepository\" />
     <Folder Include="Services\" />
     <Folder Include="Infrastructure\" />
-    <Folder Include="Infrastructure\MapperProfiles\" />
+    <Folder Include="Infrastructure\AutoMapperProfiles\" />
+    <Folder Include="Services\BaseService\" />
+    <Folder Include="Services\StatusesService\" />
+    <Folder Include="Services\OrdersService\" />
+    <Folder Include="Services\ProductsService\" />
+    <Folder Include="Infrastructure\Validation\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.0" />
     <PackageReference Include="AutoMapper" Version="9.0.0" />
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="7.0.0" />
+    <PackageReference Include="System.Text.Json" Version="4.7.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="3.1.0" />
   </ItemGroup>
 </Project>
