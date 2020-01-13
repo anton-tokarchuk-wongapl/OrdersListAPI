@@ -33,20 +33,6 @@ namespace OrdersListAPI.Services.BaseService
             return mapper.Map<IEnumerable<Entity>, IEnumerable<DTO>>(entities);
         }
 
-        public async Task<IEnumerable<DTO>> GetWhereAsync(Expression<Func<DTO, bool>> expression)
-        {
-            var newExpression = mapper.Map<Expression<Func<Entity, bool>>>(expression);
-            var entities = await baseRepository.GetWhereAsync(newExpression);
-
-            return mapper.Map<IEnumerable<Entity>, IEnumerable<DTO>>(entities);
-        }
-
-        public async Task<bool> AnyAsync(Expression<Func<DTO, bool>> expression)
-        {
-            var newExpression = mapper.Map<Expression<Func<Entity, bool>>>(expression);
-            return await baseRepository.AnyAsync(newExpression);
-        }
-
         public async Task AddAsync(DTO dto)
         {
             var entity = mapper.Map<Entity>(dto);

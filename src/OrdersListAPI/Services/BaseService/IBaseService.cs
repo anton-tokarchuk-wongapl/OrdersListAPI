@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq.Expressions;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace OrdersListAPI.Services.BaseService
@@ -12,10 +10,6 @@ namespace OrdersListAPI.Services.BaseService
         Task<DTO> GetByIdAsync(int id);
 
         Task<IEnumerable<DTO>> GetAllAsync();
-
-        Task<IEnumerable<DTO>> GetWhereAsync(Expression<Func<DTO, bool>> expression);
-
-        Task<bool> AnyAsync(Expression<Func<DTO, bool>> expression);
 
         Task AddAsync(DTO dto);
 

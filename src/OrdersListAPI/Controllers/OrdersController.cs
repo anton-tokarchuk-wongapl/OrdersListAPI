@@ -5,28 +5,28 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using OrdersListAPI.DTOs;
 using OrdersListAPI.Infrastructure.Validation;
-using OrdersListAPI.Services.ProductsService;
+using OrdersListAPI.Services.OrdersService;
 
 namespace OrdersListAPI.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class ProductsController : ControllerBase
+    public class OrdersController : ControllerBase
     {
-        private readonly IProductsService productsService;
+        private readonly IOrdersService ordersService;
 
-        public ProductsController(IProductsService productsService)
+        public OrdersController(IOrdersService ordersService)
         {
-            this.productsService = productsService;
+            this.ordersService = ordersService;
         }
 
         [ValidateModel]
         [ResponseCache(Duration = 60)]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<ProductDTO>>> GetAllAsync()
+        public async Task<ActionResult<IEnumerable<OrderDTO>>> GetAllAsync()
         {
-            var products = await productsService.GetAllAsync();
+            var products = await ordersService.GetAllAsync();
 
             return products.ToList();
         }
@@ -36,37 +36,37 @@ namespace OrdersListAPI.Controllers
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [HttpGet("{id}")]
-        public async Task<ActionResult<ProductDTO>> GetByIdAsync(int id)
+        public async Task<ActionResult<OrderDTO>> GetByIdAsync(int id)
         {
-            var product = await productsService.GetByIdAsync(id);
+            var dto = await ordersService.GetByIdAsync(id);
 
-            if (Equals(product, null))
+            if (Equals(dto, null))
             {
                 return NotFound();
             }
 
-            return product;
+            return dto;
         }
 
         [ValidateModel]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [HttpPost]
-        public async Task<ActionResult<ProductDTO>> CreateAsync([FromBody] ProductDTO productDTO)
+        public async Task<ActionResult<OrderDTO>> CreateAsync([FromBody] OrderDTO dto)
         {
-            await productsService.AddAsync(productDTO);
-            return productDTO;
+            await ordersService.AddAsync(dto);
+            return dto;
         }
 
         [ValidateModel]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [HttpPut("{id}")]
-        public async Task<ActionResult<ProductDTO>> UpdateAsync(int id, [FromBody] ProductDTO productDTO)
+        public async Task<ActionResult<OrderDTO>> UpdateAsync(int id, [FromBody] OrderDTO dto)
         {
-            productDTO.Id = id;
-            await productsService.UpdateAsync(productDTO);
+            dto.Id = id;
+            await ordersService.UpdateAsync(dto);
 
-            return productDTO;
+            return dto;
         }
 
 
@@ -74,17 +74,17 @@ namespace OrdersListAPI.Controllers
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [HttpDelete("{id}")]
-        public async Task<ActionResult<ProductDTO>> DeleteAsync(int id)
+        public async Task<ActionResult<OrderDTO>> DeleteAsync(int id)
         {
-            var product = await productsService.GetByIdAsync(id);
+            var dto = await ordersService.GetByIdAsync(id);
 
-            if (Equals(product, null))
+            if (Equals(dto, null))
             {
                 return NotFound();
             }
 
-            await productsService.DeleteAsync(product);
-            return product;
+            await ordersService.DeleteAsync(dto);
+            return dto;
         }
     }
 }
