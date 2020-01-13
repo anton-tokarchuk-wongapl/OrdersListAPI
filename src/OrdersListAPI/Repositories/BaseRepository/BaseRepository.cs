@@ -20,13 +20,13 @@ namespace OrdersListAPI.Repositories.BaseRepository
             entity = context.Set<T>();
         }
 
-        public async virtual Task<T> GetByIdAsync(int id)
+        public async Task<T> GetByIdAsync(int id)
             => await entity.FindAsync(id);
 
-        public async virtual Task<IEnumerable<T>> GetAllAsync()
+        public async Task<IEnumerable<T>> GetAllAsync()
             => await entity.ToListAsync();
 
-        public async virtual Task<IEnumerable<T>> GetWhereAsync(Expression<Func<T, bool>> expression)
+        public async Task<IEnumerable<T>> GetWhereAsync(Expression<Func<T, bool>> expression)
             => await entity.Where(expression)
                            .ToListAsync();
 
