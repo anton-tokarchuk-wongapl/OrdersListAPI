@@ -71,7 +71,7 @@ namespace OrdersListAPI.Controllers
 
         [ValidateModel]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        [HttpPut("{id}")]
+        [HttpPut]
         public async Task<ActionResult<OrderDTO>> UpdateAsync([FromBody] OrderDTO dto)
         {
             await ordersService.UpdateAsync(dto);
