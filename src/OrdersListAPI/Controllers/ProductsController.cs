@@ -21,7 +21,6 @@ namespace OrdersListAPI.Controllers
         }
 
         [ValidateModel]
-        [ResponseCache(Duration = 60)]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [HttpGet]
         public async Task<ActionResult<IEnumerable<ProductDTO>>> GetAllAsync()
@@ -32,7 +31,6 @@ namespace OrdersListAPI.Controllers
         }
 
         [ValidateModel]
-        [ResponseCache(Duration = 60)]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [HttpGet("{id}")]

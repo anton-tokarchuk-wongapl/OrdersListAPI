@@ -33,7 +33,8 @@ namespace OrdersListAPI
                     .AddJsonOptions(options => options.JsonSerializerOptions.PropertyNamingPolicy = JsonNamingPolicy.CamelCase);
 
             services.AddAutoMapper(typeof(Startup));
-            services.AddDbContext<OrdersContext>(x => x.UseInMemoryDatabase("In-Memory-Db"));
+            services.AddDbContext<OrdersContext>(x => x.UseInMemoryDatabase("In-Memory-Db")
+                                                       .UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking));
 
             services.AddScoped<IStatusesRepository, StatusesRepository>();
             services.AddScoped<IProductsRepository, ProductsRepository>();
